@@ -1,0 +1,332 @@
+/* =========================
+   基本設定 / Reset
+========================= */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:#f5f5f5;
+  color:#000;
+}
+
+/* =========================
+   aside（可收合側邊選單）
+   - PDF 只要求「可收合」與「選單展開」:contentReference[oaicite:1]{index=1}
+========================= */
+.aside-toggle{display:none;}
+
+.sidebar{
+  position:fixed;
+  top:0; left:0; bottom:0;
+  width:260px;
+  background:#222;
+  color:#fff;
+  transform:translateX(-100%);
+  transition:transform .3s ease;
+  z-index:5000;
+  overflow-y:auto;
+}
+
+.aside-toggle:checked ~ .sidebar{transform:translateX(0);}
+
+.sidebar-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.sidebar-header h2{
+  font-size:1.15rem;
+  font-weight:800;
+}
+
+.aside-close{
+  cursor:pointer;
+  font-size:1.2rem;
+  padding:4px 8px;
+}
+
+.menu ul{list-style:none;}
+.menu li{border-bottom:1px solid rgba(255,255,255,.08);}
+
+.menu a{
+  display:block;
+  padding:12px 16px;
+  color:#fff;
+  text-decoration:none;
+  font-size:.95rem;
+}
+
+.menu a i{margin-right:10px;}
+.menu a:hover{background:rgba(255,255,255,.08);}
+
+/* 小螢幕：左上角漢堡按鈕 */
+.aside-open{
+  position:fixed;
+  top:12px; left:12px;
+  z-index:6000;
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:8px;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+}
+
+/* 大螢幕：側欄固定展開 */
+@media (min-width:900px){
+  .sidebar{transform:translateX(0);}
+  .aside-open,.aside-close{display:none;}
+  .site-header,.site-main,.site-footer{margin-left:260px;}
+}
+
+/* =========================
+   header / banner
+   - 底圖來源：images/ .jpg:contentReference[oaicite:2]{index=2}
+========================= */
+.site-header{position:relative;}
+
+.banner{
+  width:100%;
+  height:260px;
+  background-image:url("images/banner.jpg"); /* ✅ 請把 banner.jpg 放在 images/ 裡 */
+  background-size:cover;
+  background-position:center;
+}
+
+.banner-overlay{
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg, #74ebd5, #ACB6E5);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:12px 16px;
+}
+
+.banner-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.lang-switch a{
+  color:#fff;
+  text-decoration:none;
+  font-size:.95rem;
+}
+.lang-switch a.active{font-weight:800;text-decoration:underline;}
+
+.music-player audio{
+  height:34px;
+}
+
+/* banner 文字 */
+.banner-text h1{
+  font-size:2rem;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.banner-text p{
+  font-size:1rem;
+  opacity:.95;
+}
+
+/* =========================
+   main
+========================= */
+.site-main{
+  padding:24px 16px 32px;
+}
+
+/* article 區塊：
+   H1：1.6rem、#C7C7E2
+   content：1.1rem、#000000
+   :contentReference[oaicite:3]{index=3} */
+.intro-article{
+  max-width:1100px;
+  margin:0 auto 22px;
+}
+.intro-article h1{
+  font-size:1.6rem;
+  color:#C7C7E2;
+  margin-bottom:10px;
+  font-weight:900;
+}
+.intro-article .content{
+  font-size:1.1rem;
+  color:#000000;
+  line-height:1.8;
+}
+
+/* =========================
+   商品區（每列最多三個，超過換行）
+   :contentReference[oaicite:4]{index=4}
+========================= */
+.products{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;          /* ✅ 超過自動換行 */
+  gap:28px;                /* ✅ 行列間距 */
+}
+
+/* 每張卡片 */
+.product-card{
+  flex:0 0 calc((100% - 56px) / 3); /* ✅ 三個一排：gap 28px * 2 = 56px */
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+}
+
+/* 產品名 H2：1.25rem、#BB5E00 :contentReference[oaicite:5]{index=5} */
+.product-card h2{
+  font-size:1.25rem;
+  color:#BB5E00;
+  text-align:center;
+  margin-bottom:12px;
+  font-weight:900;
+}
+
+/* 圖片（統一大小） */
+.product-image{
+  margin-bottom:10px;
+}
+.product-image img{
+  width:100%;
+  height:190px;          /* 統一高度（不受原檔影響） */
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
+
+/* 圖片和價格之間有虛線 :contentReference[oaicite:6]{index=6} */
+.product-image{
+  padding-bottom:12px;
+  border-bottom:2px dashed #cfcfcf;
+}
+
+/* 價格：1.25rem、#000000 :contentReference[oaicite:7]{index=7} */
+.price{
+  font-size:1.25rem;
+  color:#000000;
+  font-weight:900;
+  text-align:center;
+  margin-top:12px;
+}
+
+/* 若你有「選購/加入購物車」按鈕（不影響 PDF 規格） */
+.buy-link,
+.add-btn{
+  margin-top:14px;
+  text-align:center;
+  text-decoration:none;
+  border:none;
+  background:#ff8800;
+  color:#fff;
+  padding:12px 14px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  display:block;
+}
+.buy-link:hover,
+.add-btn:hover{background:#ff6a00;}
+
+/* RWD：平板 2 個一排、手機 1 個一排（不違反「最多三個」） */
+@media (max-width:900px){
+  .product-card{flex:0 0 calc((100% - 28px) / 2);}
+}
+@media (max-width:600px){
+  .product-card{flex:0 0 100%;}
+}
+
+/* =========================
+   footer（左網站地圖 / 中版權 / 右社群）
+   :contentReference[oaicite:8]{index=8}
+========================= */
+.site-footer{
+  background:#222;
+  color:#fff;
+  padding:14px 16px;
+}
+
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.footer-link{
+  color:#fff;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.footer-link:hover{opacity:.85;}
+
+.footer-center p{margin:0;}
+
+.social-link{
+  display:inline-flex;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  background:#444;
+  color:#fff;
+  text-decoration:none;
+  margin-left:6px;
+}
+.social-link:hover{background:#666;}
+
+/* =========================
+   （可選）右上角購物車 icon（若你有用 cart.js）
+   不影響 PDF 規格
+========================= */
+.cart-fab{
+  position:fixed;
+  top:14px;
+  right:16px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ff8800;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 4px 10px rgba(0,0,0,.22);
+}
+.cart-fab:hover{background:#ff6a00;}
+
+.cart-badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  border-radius:999px;
+  background:#e60012;
+  color:#fff;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #fff;
+}

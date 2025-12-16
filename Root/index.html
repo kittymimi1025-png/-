@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冰品專賣店</title>
+
+  <!-- 連結 CSS -->
+  <link rel="stylesheet" href="style2.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+
+<!-- 右上角購物車（多頁：點了到 cart.html） -->
+<a class="cart-fab" href="cart.html" aria-label="購物車">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span class="cart-badge" id="cartBadge">0</span>
+</a>
+
+<!-- 收合側邊選單的切換按鈕 -->
+<input type="checkbox" id="aside-toggle" class="aside-toggle">
+
+<!-- aside 側邊選單（多頁：點口味到 product.html 選數量） -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2><i class="fa-solid fa-ice-cream"></i> 冰品選單</h2>
+    <label for="aside-toggle" class="aside-close" aria-label="關閉選單">
+      <i class="fa-solid fa-xmark"></i>
+    </label>
+  </div>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="product.html?name=清冰&price=10"><i class="fa-solid fa-ice-cream"></i> 清冰</a></li>
+      <li><a href="product.html?name=紅豆牛奶&price=20"><i class="fa-solid fa-ice-cream"></i> 紅豆牛奶</a></li>
+      <li><a href="product.html?name=綠豆牛奶&price=20"><i class="fa-solid fa-ice-cream"></i> 綠豆牛奶</a></li>
+      <li><a href="product.html?name=花生牛奶&price=20"><i class="fa-solid fa-ice-cream"></i> 花生牛奶</a></li>
+      <li><a href="product.html?name=芋頭牛奶&price=20"><i class="fa-solid fa-ice-cream"></i> 芋頭牛奶</a></li>
+      <li><a href="product.html?name=米糕&price=20"><i class="fa-solid fa-ice-cream"></i> 米糕</a></li>
+
+      <li><a href="product.html?name=烏梅&price=20"><i class="fa-solid fa-ice-cream"></i> 烏梅</a></li>
+      <li><a href="product.html?name=柳丁&price=20"><i class="fa-solid fa-ice-cream"></i> 柳丁</a></li>
+      <li><a href="product.html?name=鳳梨&price=20"><i class="fa-solid fa-ice-cream"></i> 鳳梨</a></li>
+      <li><a href="product.html?name=檸檬&price=20"><i class="fa-solid fa-ice-cream"></i> 檸檬</a></li>
+      <li><a href="product.html?name=牛奶&price=20"><i class="fa-solid fa-ice-cream"></i> 牛奶</a></li>
+
+      <li><a href="product.html?name=百香&price=20"><i class="fa-solid fa-ice-cream"></i> 百香</a></li>
+      <li><a href="product.html?name=無籽百香&price=25"><i class="fa-solid fa-ice-cream"></i> 無籽百香</a></li>
+
+      <li><a href="product.html?name=梅子&price=20"><i class="fa-solid fa-ice-cream"></i> 梅子</a></li>
+      <li><a href="product.html?name=西瓜&price=25"><i class="fa-solid fa-ice-cream"></i> 西瓜</a></li>
+      <li><a href="product.html?name=芒果&price=30"><i class="fa-solid fa-ice-cream"></i> 芒果</a></li>
+      <li><a href="product.html?name=巧克力&price=25"><i class="fa-solid fa-ice-cream"></i> 巧克力</a></li>
+      <li><a href="product.html?name=仙草&price=25"><i class="fa-solid fa-ice-cream"></i> 仙草</a></li>
+      <li><a href="product.html?name=火龍果&price=25"><i class="fa-solid fa-ice-cream"></i> 火龍果</a></li>
+      <li><a href="product.html?name=情人果&price=30"><i class="fa-solid fa-ice-cream"></i> 情人果</a></li>
+      <li><a href="product.html?name=養樂多&price=25"><i class="fa-solid fa-ice-cream"></i> 養樂多</a></li>
+      <li><a href="product.html?name=芭樂&price=30"><i class="fa-solid fa-ice-cream"></i> 芭樂</a></li>
+      <li><a href="product.html?name=草莓&price=30"><i class="fa-solid fa-ice-cream"></i> 草莓</a></li>
+      <li><a href="product.html?name=奇異果&price=30"><i class="fa-solid fa-ice-cream"></i> 奇異果</a></li>
+      <li><a href="product.html?name=番茄梅&price=30"><i class="fa-solid fa-ice-cream"></i> 番茄梅</a></li>
+      <li><a href="product.html?name=Oreo&price=30"><i class="fa-solid fa-ice-cream"></i> Oreo</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- header -->
+<header class="site-header">
+  <label for="aside-toggle" class="aside-open" aria-label="展開選單">
+    <i class="fa-solid fa-bars"></i>
+  </label>
+
+  <div class="banner">
+    <div class="banner-overlay">
+      <div class="banner-topbar">
+        <div class="lang-switch">
+          <a href="#" class="active">中文</a> | <a href="#">EN</a>
+        </div>
+        <div class="music-player">
+          <audio controls>
+            <source src="media/webmusic.mp3" type="audio/mpeg">
+            您的瀏覽器不支援音樂播放。
+          </audio>
+        </div>
+      </div>
+
+      <div class="banner-text">
+        <h1>沁涼冰品</h1>
+        <p>夏日消暑最佳選擇，一起來透心涼吧！</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- main -->
+<main class="site-main">
+  <article class="intro-article">
+    <h1>店家介紹</h1>
+    <div class="content">
+      我們的冰棒口味多元，包含懷舊古早味、季節限定、手作新鮮水果風味，以及最受小朋友喜歡的各式滋味。
+    </div>
+  </article>
+
+  <!-- ✅ 商品總覽（已整合你提供的所有卡片） -->
+  <section class="products">
+
+    <section class="product-card">
+      <h2>清冰</h2>
+      <div class="product-image"><img src="media/清冰.jpg" alt="清冰"></div>
+      <p class="price">$10</p>
+      <a class="buy-link" href="product.html?name=清冰&price=10">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>紅豆牛奶</h2>
+      <div class="product-image"><img src="media/紅豆牛奶.jpg" alt="紅豆牛奶"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=紅豆牛奶&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>綠豆牛奶</h2>
+      <div class="product-image"><img src="media/綠豆牛奶.jpg" alt="綠豆牛奶"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=綠豆牛奶&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>花生牛奶</h2>
+      <div class="product-image"><img src="media/花生牛奶.jpg" alt="花生牛奶"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=花生牛奶&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>芋頭牛奶</h2>
+      <div class="product-image"><img src="media/芋頭牛奶.jpg" alt="芋頭牛奶"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=芋頭牛奶&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>米糕</h2>
+      <div class="product-image"><img src="media/米糕.jpg" alt="米糕"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=米糕&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>烏梅</h2>
+      <div class="product-image"><img src="media/烏梅.jpg" alt="烏梅"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=烏梅&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>柳丁</h2>
+      <div class="product-image"><img src="media/柳丁.jpg" alt="柳丁"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=柳丁&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>鳳梨</h2>
+      <div class="product-image"><img src="media/鳳梨.jpg" alt="鳳梨"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=鳳梨&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>檸檬</h2>
+      <div class="product-image"><img src="media/檸檬.jpg" alt="檸檬"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=檸檬&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>牛奶</h2>
+      <div class="product-image"><img src="media/牛奶.jpg" alt="牛奶"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=牛奶&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>百香</h2>
+      <div class="product-image"><img src="media/百香.jpg" alt="百香"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=百香&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>無籽百香</h2>
+      <div class="product-image"><img src="media/無籽百香.jpg" alt="無籽百香"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=無籽百香&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>梅子</h2>
+      <div class="product-image"><img src="media/梅子.jpg" alt="梅子"></div>
+      <p class="price">$20</p>
+      <a class="buy-link" href="product.html?name=梅子&price=20">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>西瓜</h2>
+      <div class="product-image"><img src="media/西瓜.jpg" alt="西瓜"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=西瓜&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>芒果</h2>
+      <div class="product-image"><img src="media/芒果.jpg" alt="芒果"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=芒果&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>巧克力</h2>
+      <div class="product-image"><img src="media/巧克力.jpg" alt="巧克力"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=巧克力&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>仙草</h2>
+      <div class="product-image"><img src="media/仙草.jpg" alt="仙草"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=仙草&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>火龍果</h2>
+      <div class="product-image"><img src="media/火龍果.jpg" alt="火龍果"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=火龍果&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>情人果</h2>
+      <div class="product-image"><img src="media/情人果.jpg" alt="情人果"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=情人果&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>養樂多</h2>
+      <div class="product-image"><img src="media/養樂多.jpg" alt="養樂多"></div>
+      <p class="price">$25</p>
+      <a class="buy-link" href="product.html?name=養樂多&price=25">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>芭樂</h2>
+      <div class="product-image"><img src="media/芭樂.jpg" alt="芭樂"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=芭樂&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>草莓</h2>
+      <div class="product-image"><img src="media/草莓.jpg" alt="草莓"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=草莓&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>奇異果</h2>
+      <div class="product-image"><img src="media/奇異果.jpg" alt="奇異果"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=奇異果&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>番茄梅</h2>
+      <div class="product-image"><img src="media/番茄梅.jpg" alt="番茄梅"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=番茄梅&price=30">選購</a>
+    </section>
+
+    <section class="product-card">
+      <h2>Oreo</h2>
+      <div class="product-image"><img src="media/Oreo.jpg" alt="Oreo"></div>
+      <p class="price">$30</p>
+      <a class="buy-link" href="product.html?name=Oreo&price=30">選購</a>
+    </section>
+
+  </section>
+</main>
+
+<!-- footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="sitemap.html" class="footer-link">
+        <i class="fa-solid fa-sitemap"></i> 網站地圖
+      </a>
+    </div>
+
+    <div class="footer-center">
+      <p>© 2025 冰品專賣店 All Rights Reserved.</p>
+    </div>
+
+    <div class="footer-right">
+      <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://line.me" target="_blank" class="social-link" aria-label="LINE">
+        <i class="fa-brands fa-line"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- badge 更新（若你有 cart.js） -->
+<script src="cart.js"></script>
+<script>
+  if (typeof updateBadge === "function") updateBadge();
+</script>
+
+</body>
+</html>

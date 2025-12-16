@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>購物車</title>
+
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    .page-wrap{max-width:960px;margin:24px auto;padding:0 16px;}
+    .cart-box{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+    .title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}
+    .title h1{font-size:1.6rem;margin:0;}
+    .cart-list{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+    .cart-item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid #eee;border-radius:12px;padding:12px;}
+    .cart-name{font-weight:900;margin-bottom:4px;}
+    .cart-meta{color:#333;font-size:.95rem;}
+    .cart-ops{display:flex;gap:8px;flex-wrap:wrap;}
+    .mini-btn{border:1px solid #ddd;background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800;}
+    .mini-btn:hover{background:#fafafa;}
+    .mini-btn.danger{border-color:#ffb3b3;}
+    .mini-btn.danger:hover{background:#ffecec;}
+    .summary{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:1.1rem;}
+    .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+    .primary-btn,.ghost-btn{
+      padding:12px 14px;border-radius:10px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;
+      display:inline-block; border:1px solid transparent;
+    }
+    .primary-btn{background:#ff8800;color:#fff;border-color:#ff8800;flex:1;}
+    .primary-btn:hover{background:#ff6a00;border-color:#ff6a00;}
+    .ghost-btn{background:#fff;color:#333;border-color:#ddd;flex:1;}
+    .ghost-btn:hover{background:#fafafa;}
+    .empty{padding:18px;text-align:center;color:#666;border:1px dashed #ddd;border-radius:12px;background:#fff;}
+  </style>
+</head>
+
+<body>
+
+<main class="page-wrap">
+  <div class="cart-box">
+    <div class="title">
+      <h1><i class="fa-solid fa-cart-shopping"></i> 購物車</h1>
+      <a class="ghost-btn" href="index.html">回首頁</a>
+    </div>
+
+    <div id="cartList" class="cart-list"></div>
+
+    <div class="summary">
+      <strong>合計：</strong>
+      <span id="cartTotal">$0</span>
+    </div>
+
+    <div class="actions">
+      <button class="ghost-btn" id="clearBtn">清空</button>
+      <a class="primary-btn" href="index.html">繼續購物</a>
+    </div>
+  </div>
+</main>
+
+<script src="cart.js"></script>
+<script>
+  renderCartPage();
+  document.getElementById("clearBtn").onclick = () => {
+    clearCart();
+    renderCartPage();
+  };
+</script>
+
+</body>
+</html>

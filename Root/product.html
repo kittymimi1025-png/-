@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>商品頁</title>
+
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- 商品頁補充樣式（不動你的 style2.css 也能正常美觀） -->
+  <style>
+    .page-wrap{max-width:960px;margin:24px auto;padding:0 16px;}
+    .p-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+    .p-top{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+    .p-img{flex:1 1 280px;}
+    .p-img img{width:100%;height:260px;object-fit:cover;border-radius:10px;}
+    .p-info{flex:2 1 320px;}
+    .p-name{font-size:1.6rem;font-weight:900;margin-bottom:10px;}
+    .p-price{font-size:1.1rem;margin-bottom:14px;}
+    .qty-controls{display:flex;gap:10px;align-items:center;margin:10px 0 14px;}
+    .qty-btn{width:40px;height:40px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:18px;}
+    #qty{width:90px;height:40px;border-radius:10px;border:1px solid #ddd;text-align:center;font-size:16px;}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+    .primary-btn, .ghost-btn, .link-btn{
+      padding:12px 14px;border-radius:10px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;
+      display:inline-block; border:1px solid transparent;
+    }
+    .primary-btn{background:#ff8800;color:#fff;border-color:#ff8800;}
+    .primary-btn:hover{background:#ff6a00;border-color:#ff6a00;}
+    .ghost-btn{background:#fff;color:#333;border-color:#ddd;}
+    .ghost-btn:hover{background:#fafafa;}
+    /* 右上角購物車 icon（如果你的 style2.css 已有就以你的為主） */
+    .cart-fab{
+      position:fixed;top:14px;right:16px;width:46px;height:46px;border-radius:50%;
+      background:#ff8800;color:#fff;display:flex;align-items:center;justify-content:center;
+      text-decoration:none;z-index:9999;box-shadow:0 4px 10px rgba(0,0,0,.22);
+    }
+    .cart-badge{
+      position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+      background:#e60012;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 右上購物車 -->
+<a class="cart-fab" href="cart.html" aria-label="購物車">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span class="cart-badge" id="cartBadge">0</span>
+</a>
+
+<main class="page-wrap">
+  <div class="p-card">
+    <div class="p-top">
+      <div class="p-img">
+        <img id="img" src="media/清冰.jpg" alt="商品圖片">
+      </div>
+      <div class="p-info">
+        <div class="p-name" id="name">商品</div>
+        <div class="p-price">單價：<strong id="price">$0</strong></div>
+
+        <div class="qty-controls">
+          <button class="qty-btn" id="dec">-</button>
+          <input type="number" id="qty" min="1" value="1">
+          <button class="qty-btn" id="inc">+</button>
+        </div>
+
+        <button class="primary-btn" id="addBtn">加入購物車</button>
+
+        <div class="btn-row">
+          <a class="ghost-btn link-btn" href="index.html">回首頁</a>
+          <a class="ghost-btn link-btn" href="cart.html">前往購物車</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="cart.js"></script>
+<script>
+  // 從網址讀取：product.html?name=烏梅&price=20
+  const params = new URLSearchParams(location.search);
+  const name = params.get("name") || "商品";
+  const price = Number(params.get("price") || 0);
+
+  document.getElementById("name").textContent = name;
+  document.getElementById("price").textContent = "$" + price;
+
+  // 自動帶入圖片：media/口味.jpg（和你目前命名方式一致）
+  const img = document.getElementById("img");
+  img.src = "media/" + name + ".jpg";
+  img.alt = name;
+
+  const qty = document.getElementById("qty");
+  document.getElementById("dec").onclick = () => qty.value = Math.max(1, Number(qty.value) - 1);
+  document.getElementById("inc").onclick = () => qty.value = Number(qty.value) + 1;
+
+  document.getElementById("addBtn").onclick = () => {
+    addToCart(name, price, Number(qty.value));
+    alert("已加入購物車！");
+  };
+</script>
+
+</body>
+</html>
