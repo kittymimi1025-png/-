@@ -330,9 +330,9 @@ body{
   z-index:10000;
   box-shadow:0 4px 10px rgba(0,0,0,.22);
 }
-.contact-fab{
-  background:#ffd1a3;
-  color:#ffffff;
+.contact-fab:hover{
+  background:#ff6a00;
+  transform:translateY(-2px);
 }
 
 /* ===== 通用頁面容器（contact / order） ===== */
@@ -451,5 +451,3 @@ body{
   padding-top:10px;
   border-top:1px dashed #ddd;
 }
-
-
