@@ -316,3 +316,19 @@ body{
   justify-content:center;
   z-index:9999;
 }
+
+/* 保險：確保選購按鈕不會變回藍色連結 */
+.product-card a.buy-link{
+  margin-top:14px;
+  text-align:center;
+  text-decoration:none;
+  border:none;
+  background:#ff8800;
+  color:#fff !important;
+  padding:12px 14px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  display:block;
+}
+.product-card a.buy-link:hover{background:#ff6a00;}
