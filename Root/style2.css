@@ -1,5 +1,5 @@
 /* =========================
-   Reset
+   基本設定 / Reset
 ========================= */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -7,137 +7,144 @@ body{
   background:#f5f5f5;
   color:#000;
 }
+a{color:inherit;}
 
 /* =========================
-   側邊選單
+   aside（可收合側邊選單）
 ========================= */
 .aside-toggle{display:none;}
 
 .sidebar{
   position:fixed;
-  top:0;left:0;bottom:0;
+  top:0; left:0; bottom:0;
   width:260px;
   background:#222;
   color:#fff;
   transform:translateX(-100%);
-  transition:.3s;
+  transition:transform .3s ease;
   z-index:5000;
+  overflow-y:auto;
 }
 .aside-toggle:checked ~ .sidebar{transform:translateX(0);}
 
 .sidebar-header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   padding:16px;
   border-bottom:1px solid rgba(255,255,255,.15);
 }
-.sidebar-header h2{font-size:1.2rem;font-weight:900;}
+.sidebar-header h2{
+  font-size:1.15rem;
+  font-weight:800;
+}
+
+.aside-close{
+  cursor:pointer;
+  font-size:1.2rem;
+  padding:4px 8px;
+}
 
 .menu ul{list-style:none;}
-.menu li{border-bottom:1px solid rgba(255,255,255,.1);}
+.menu li{border-bottom:1px solid rgba(255,255,255,.08);}
 .menu a{
   display:block;
   padding:12px 16px;
   color:#fff;
   text-decoration:none;
+  font-size:.95rem;
 }
-.menu a:hover{background:rgba(255,255,255,.1);}
+.menu a i{margin-right:10px;}
+.menu a:hover{background:rgba(255,255,255,.08);}
 
+/* 小螢幕：左上角漢堡按鈕 */
 .aside-open{
   position:fixed;
-  top:12px;left:12px;
+  top:12px; left:12px;
   z-index:6000;
-  background:rgba(0,0,0,.6);
-  color:#fff;
+  cursor:pointer;
   padding:8px 10px;
   border-radius:8px;
-  cursor:pointer;
+  background:rgba(0,0,0,.6);
+  color:#fff;
 }
 
-@media(min-width:900px){
+/* 大螢幕：側欄固定展開 */
+@media (min-width:900px){
   .sidebar{transform:translateX(0);}
-  .aside-open{display:none;}
+  .aside-open,.aside-close{display:none;}
   .site-header,.site-main,.site-footer{margin-left:260px;}
 }
 
 /* =========================
-   Header / Banner
+   header / banner
 ========================= */
 .site-header{position:relative;}
 
 .banner{
+  width:100%;
   height:260px;
-  background:#ccc;
+  background-image:url("images/banner.jpg"); /* 沒有也不影響漸層 */
+  background-size:cover;
+  background-position:center;
 }
+
 .banner-overlay{
+  width:100%;
   height:100%;
-  padding:16px;
-  background:linear-gradient(135deg,#74ebd5,#ACB6E5);
+  /* 夏日漸層（跟橘色搭配） */
+  background:linear-gradient(135deg, #66e5d7 0%, #7ad7e6 40%, #a8b6ff 100%);
   color:#fff;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  padding:12px 16px;
 }
 
-.banner-text h1{font-size:2rem;font-weight:900;}
-.banner-text p{opacity:.95;}
-
-/* =========================
-   右上角 icon
-========================= */
-.cart-fab,
-.contact-fab{
-  position:fixed;
-  top:14px;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:#ff8800;
-  color:#fff;
+.banner-topbar{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  z-index:9999;
-  box-shadow:0 4px 10px rgba(0,0,0,.25);
+  justify-content:flex-end;
+  align-items:flex-start;
+  gap:12px;
+  flex-wrap:wrap;
 }
-.cart-fab{right:16px;}
-.contact-fab{right:72px;}
 
-.cart-badge{
-  position:absolute;
-  top:-6px;
-  right:-6px;
-  background:#e60012;
-  color:#fff;
-  font-size:12px;
-  padding:2px 6px;
-  border-radius:999px;
-  border:2px solid #fff;
+.music-player audio{height:34px;}
+
+/* banner 文字 */
+.banner-text h1{
+  font-size:2rem;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.banner-text p{
+  font-size:1rem;
+  opacity:.95;
 }
 
 /* =========================
-   Main
+   main / article
 ========================= */
-.site-main{padding:24px 16px;}
+.site-main{padding:24px 16px 32px;}
 
 .intro-article{
   max-width:1100px;
-  margin:0 auto 24px;
+  margin:0 auto 22px;
 }
 .intro-article h1{
   font-size:1.6rem;
   color:#C7C7E2;
   margin-bottom:10px;
+  font-weight:900;
 }
 .intro-article .content{
   font-size:1.1rem;
+  color:#000;
   line-height:1.8;
 }
 
 /* =========================
-   商品卡片
+   商品區（每列最多三個，超過換行）
 ========================= */
 .products{
   max-width:1100px;
@@ -148,88 +155,252 @@ body{
 }
 
 .product-card{
+  flex:0 0 calc((100% - 56px) / 3); /* 三個一排 */
   background:#fff;
   border-radius:16px;
   padding:18px;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
-  flex:0 0 calc((100% - 56px)/3);
   display:flex;
   flex-direction:column;
 }
 
 .product-card h2{
-  text-align:center;
-  color:#BB5E00;
   font-size:1.25rem;
+  color:#BB5E00;
+  text-align:center;
+  margin-bottom:12px;
   font-weight:900;
-  margin-bottom:10px;
 }
 
+.product-image{
+  padding-bottom:12px;
+  border-bottom:2px dashed #cfcfcf;
+  margin-bottom:10px;
+}
 .product-image img{
   width:100%;
   height:190px;
   object-fit:cover;
   border-radius:12px;
-}
-.product-image{
-  padding-bottom:12px;
-  border-bottom:2px dashed #ccc;
+  display:block;
 }
 
 .price{
-  text-align:center;
   font-size:1.25rem;
+  color:#000;
   font-weight:900;
-  margin:12px 0;
+  text-align:center;
+  margin-top:12px;
 }
 
-/* 🔥 核心：選購按鈕（強制樣式） */
-.product-card .buy-link{
-  margin-top:auto;
-  background:#ff8800;
-  color:#fff !important;
+/* ✅ 這段是你「選購變藍色跑版」的關鍵修正 */
+.buy-link,
+.add-btn{
+  margin-top:14px;
+  width:100%;
   text-align:center;
-  padding:12px;
+  text-decoration:none;
+  border:none;
+  background:#ff8800;
+  color:#fff;
+  padding:12px 14px;
   border-radius:12px;
   font-weight:900;
-  text-decoration:none !important;
+  cursor:pointer;
   display:block;
 }
-.product-card .buy-link:hover{background:#ff6a00;}
+.buy-link:hover,
+.add-btn:hover{background:#ff6a00;}
 
-@media(max-width:900px){
-  .product-card{flex:0 0 calc((100% - 28px)/2);}
+/* RWD：平板 2 個一排、手機 1 個一排 */
+@media (max-width:900px){
+  .product-card{flex:0 0 calc((100% - 28px) / 2);}
 }
-@media(max-width:600px){
+@media (max-width:600px){
   .product-card{flex:0 0 100%;}
 }
 
 /* =========================
-   Footer
+   footer
 ========================= */
 .site-footer{
   background:#222;
   color:#fff;
-  padding:16px;
+  padding:14px 16px;
 }
 .footer-inner{
   max-width:1100px;
   margin:0 auto;
   display:flex;
+  align-items:center;
   justify-content:space-between;
+  gap:12px;
   flex-wrap:wrap;
 }
-.footer-link,
-.social-link{
+.footer-link{
   color:#fff;
   text-decoration:none;
-}
-.social-link{
-  width:34px;height:34px;
-  border-radius:50%;
-  background:#444;
   display:inline-flex;
   align-items:center;
+  gap:8px;
+}
+.footer-link:hover{opacity:.85;}
+.footer-center p{margin:0;}
+.social-link{
+  display:inline-flex;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  align-items:center;
   justify-content:center;
+  background:#444;
+  color:#fff;
+  text-decoration:none;
+  margin-left:6px;
 }
 .social-link:hover{background:#666;}
+
+/* =========================
+   右上角購物車 icon
+========================= */
+.cart-fab{
+  position:fixed;
+  top:14px;
+  right:16px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ff8800;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 4px 10px rgba(0,0,0,.22);
+}
+.cart-fab:hover{background:#ff6a00;}
+
+.cart-badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  border-radius:999px;
+  background:#e60012;
+  color:#fff;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #fff;
+}
+
+/* =========================
+   右上角聯絡我們 icon（若你 index.html 有放 contact-fab）
+========================= */
+.contact-fab{
+  position:fixed;
+  top:14px;
+  right:72px; /* 在購物車左邊 */
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ff8800;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 4px 10px rgba(0,0,0,.22);
+}
+.contact-fab:hover{background:#ff6a00;}
+
+/* =========================
+   通用頁面容器（contact / order / cart）
+========================= */
+.page-wrap{
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+.page-title{
+  font-size:2rem;
+  font-weight:900;
+  margin:8px 0 16px;
+}
+
+/* 表單卡片 */
+.form-card{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+/* ✅ 讓聯絡我們「不要橫向擠在一起」：強制直向 */
+.form-label{
+  display:block;
+  margin:12px 0 6px;
+  font-weight:900;
+}
+
+.form-input{
+  width:100%;
+  padding:12px 12px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  outline:none;
+  font-size:1rem;
+  display:block;
+}
+textarea.form-input{resize:vertical; min-height:120px;}
+
+.form-input:focus{
+  border-color:#ff8800;
+  box-shadow:0 0 0 3px rgba(255,136,0,.18);
+}
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 14px;
+  border-radius:12px;
+  font-weight:900;
+  text-decoration:none;
+  border:1px solid transparent;
+  cursor:pointer;
+  text-align:center;
+  font-size:1rem;
+  line-height:1;
+}
+
+.btn.primary{
+  background:#ff8800;
+  color:#fff;
+  border-color:#ff8800;
+}
+.btn.primary:hover{background:#ff6a00;border-color:#ff6a00;}
+
+.btn.ghost{
+  background:#fff;
+  color:#333;
+  border-color:#ddd;
+}
+.btn.ghost:hover{background:#fafafa;}
+
+.form-hint{
+  margin-top:10px;
+  color:#555;
+  line-height:1.6;
+}
