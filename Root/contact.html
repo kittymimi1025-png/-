@@ -23,17 +23,17 @@
   <h1 class="page-title">聯絡我們</h1>
 
   <form class="form-card" id="contactForm">
-    <label class="form-label">姓名</label>
-    <input class="form-input" type="text" name="name" placeholder="請輸入姓名" required>
+    <label class="form-label" for="name">姓名</label>
+    <input class="form-input" id="name" type="text" name="name" placeholder="請輸入姓名" required>
 
-    <label class="form-label">電話</label>
-    <input class="form-input" type="tel" name="phone" placeholder="例如：0912-345-678" required>
+    <label class="form-label" for="phone">電話</label>
+    <input class="form-input" id="phone" type="tel" name="phone" placeholder="例如：0912-345-678" required>
 
-    <label class="form-label">電子郵件</label>
-    <input class="form-input" type="email" name="email" placeholder="example@mail.com" required>
+    <label class="form-label" for="email">電子郵件</label>
+    <input class="form-input" id="email" type="email" name="email" placeholder="example@mail.com" required>
 
-    <label class="form-label">留言（可選）</label>
-    <textarea class="form-input" name="message" rows="5" placeholder="想詢問的內容…"></textarea>
+    <label class="form-label" for="message">留言（可選）</label>
+    <textarea class="form-input" id="message" name="message" rows="5" placeholder="想詢問的內容…"></textarea>
 
     <div class="form-actions">
       <a class="btn ghost" href="index.html">回首頁</a>
@@ -46,7 +46,8 @@
 
 <script src="cart.js"></script>
 <script>
-  // 聯絡表單：純前端示範（存 localStorage + 顯示成功訊息）
+  if (typeof updateBadge === "function") updateBadge();
+
   document.getElementById("contactForm").addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -56,7 +57,8 @@
     list.push({ ...data, createdAt: new Date().toISOString() });
     localStorage.setItem(KEY, JSON.stringify(list));
 
-    document.getElementById("contactHint").textContent = "已收到您的訊息，我們會盡快與您聯絡！";
+    const hint = document.getElementById("contactHint");
+    hint.textContent = "✅ 已收到您的訊息，我們會盡快與您聯絡！";
     e.target.reset();
   });
 </script>
