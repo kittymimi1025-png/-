@@ -447,3 +447,27 @@ body{
   padding-top: 10px;
   border-top:1px dashed #ddd;
 }
+
+/* ===== 右上角聯絡我們 icon（新增） ===== */
+.contact-fab{
+  position: fixed;
+  top: 14px;
+  right: 72px;           /* 固定在購物車左邊 */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #ff8800;   /* 與購物車一致 */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,.22);
+}
+
+/* 滑過效果（只影響聯絡我們） */
+.contact-fab:hover{
+  background: #ff6a00;
+  transform: translateY(-2px);
+}
