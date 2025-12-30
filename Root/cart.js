@@ -105,3 +105,77 @@ function removeItem(encodedName) {
 
 // 每頁載入都更新 badge
 document.addEventListener("DOMContentLoaded", updateBadge);
+
+// ===== Checkout（order.html）渲染 =====
+function renderCheckoutPage() {
+  const list = document.getElementById("checkoutList");
+  const totalEl = document.getElementById("checkoutTotal");
+  const emptyHint = document.getElementById("emptyHint");
+  if (!list || !totalEl) return;
+
+  const cart = getCart();
+  const names = Object.keys(cart);
+
+  if (names.length === 0) {
+    list.innerHTML = "";
+    totalEl.textContent = "$0";
+    if (emptyHint) emptyHint.textContent = "購物車是空的，請先加入商品再結帳。";
+    updateBadge();
+    return;
+  }
+  if (emptyHint) emptyHint.textContent = "";
+
+  let total = 0;
+  list.innerHTML = names.map((name) => {
+    const item = cart[name];
+    const sub = item.price * item.qty;
+    total += sub;
+    return `
+      <div class="checkout-item">
+        <span class="checkout-name">${name}</span>
+        <span class="checkout-meta">$${item.price} × ${item.qty}</span>
+        <strong class="checkout-sub">$${sub}</strong>
+      </div>
+    `;
+  }).join("");
+
+  totalEl.textContent = "$" + total;
+  updateBadge();
+}
+
+// ===== 送出訂單（純前端示範：存 localStorage + 清空購物車） =====
+function submitOrder(customerInfo) {
+  const cart = getCart();
+  const names = Object.keys(cart);
+  if (names.length === 0) return { ok: false, message: "購物車是空的，無法送出訂單。" };
+
+  // 基本檢查（你要更嚴格我也能加）
+  if (!customerInfo?.name || !customerInfo?.phone || !customerInfo?.email) {
+    return { ok: false, message: "請完整填寫姓名、電話、Email。" };
+  }
+
+  let total = 0;
+  const items = names.map((name) => {
+    const item = cart[name];
+    const sub = item.price * item.qty;
+    total += sub;
+    return { name, price: item.price, qty: item.qty, subTotal: sub };
+  });
+
+  const order = {
+    id: "OD" + Date.now(),
+    customer: customerInfo,
+    items,
+    total,
+    createdAt: new Date().toISOString()
+  };
+
+  const KEY = "ice_orders_v1";
+  const orders = JSON.parse(localStorage.getItem(KEY) || "[]");
+  orders.push(order);
+  localStorage.setItem(KEY, JSON.stringify(orders));
+
+  // 清空購物車
+  clearCart();
+  return { ok: true, message: "ok", order };
+}
