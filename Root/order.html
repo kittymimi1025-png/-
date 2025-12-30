@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>送出訂單</title>
+
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+
+<!-- 右上購物車 -->
+<a class="cart-fab" href="cart.html" aria-label="購物車">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span class="cart-badge" id="cartBadge">0</span>
+</a>
+
+<main class="page-wrap">
+  <h1 class="page-title">送出訂單</h1>
+
+  <!-- 訂單摘要 -->
+  <section class="form-card" style="margin-bottom:16px;">
+    <h2 class="section-title"><i class="fa-solid fa-receipt"></i> 訂單內容</h2>
+    <div id="checkoutList" class="checkout-list"></div>
+
+    <div class="checkout-total">
+      <span>合計</span>
+      <strong id="checkoutTotal">$0</strong>
+    </div>
+
+    <p class="form-hint" id="emptyHint"></p>
+  </section>
+
+  <!-- 收件資訊 -->
+  <form class="form-card" id="orderForm">
+    <h2 class="section-title"><i class="fa-solid fa-truck"></i> 收件資訊</h2>
+
+    <label class="form-label">姓名</label>
+    <input class="form-input" type="text" name="name" required placeholder="收件人姓名">
+
+    <label class="form-label">電話</label>
+    <input class="form-input" type="tel" name="phone" required placeholder="例如：0912-345-678">
+
+    <label class="form-label">電子郵件</label>
+    <input class="form-input" type="email" name="email" required placeholder="example@mail.com">
+
+    <label class="form-label">地址（可選，看老師要求）</label>
+    <input class="form-input" type="text" name="address" placeholder="例如：台北市…">
+
+    <div class="form-actions">
+      <a class="btn ghost" href="cart.html">回購物車</a>
+      <button class="btn primary" type="submit">確認送出</button>
+    </div>
+
+    <p class="form-hint" id="orderHint"></p>
+  </form>
+</main>
+
+<script src="cart.js"></script>
+<script>
+  renderCheckoutPage(); // 由 cart.js 提供
+
+  document.getElementById("orderForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+
+    const result = submitOrder(data); // 由 cart.js 提供
+    const hint = document.getElementById("orderHint");
+
+    if (!result.ok) {
+      hint.textContent = result.message;
+      return;
+    }
+
+    hint.textContent = "訂單已送出！感謝您的訂購（已清空購物車）。";
+    e.target.reset();
+    renderCheckoutPage();
+  });
+</script>
+
+</body>
+</html>
