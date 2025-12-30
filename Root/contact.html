@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>聯絡我們</title>
+
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+
+<!-- 右上購物車 -->
+<a class="cart-fab" href="cart.html" aria-label="購物車">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span class="cart-badge" id="cartBadge">0</span>
+</a>
+
+<main class="page-wrap">
+  <h1 class="page-title">聯絡我們</h1>
+
+  <form class="form-card" id="contactForm">
+    <label class="form-label">姓名</label>
+    <input class="form-input" type="text" name="name" placeholder="請輸入姓名" required>
+
+    <label class="form-label">電話</label>
+    <input class="form-input" type="tel" name="phone" placeholder="例如：0912-345-678" required>
+
+    <label class="form-label">電子郵件</label>
+    <input class="form-input" type="email" name="email" placeholder="example@mail.com" required>
+
+    <label class="form-label">留言（可選）</label>
+    <textarea class="form-input" name="message" rows="5" placeholder="想詢問的內容…"></textarea>
+
+    <div class="form-actions">
+      <a class="btn ghost" href="index.html">回首頁</a>
+      <button class="btn primary" type="submit">送出</button>
+    </div>
+
+    <p class="form-hint" id="contactHint"></p>
+  </form>
+</main>
+
+<script src="cart.js"></script>
+<script>
+  // 聯絡表單：純前端示範（存 localStorage + 顯示成功訊息）
+  document.getElementById("contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    const KEY = "ice_contact_messages_v1";
+    const list = JSON.parse(localStorage.getItem(KEY) || "[]");
+    list.push({ ...data, createdAt: new Date().toISOString() });
+    localStorage.setItem(KEY, JSON.stringify(list));
+
+    document.getElementById("contactHint").textContent = "已收到您的訊息，我們會盡快與您聯絡！";
+    e.target.reset();
+  });
+</script>
+
+</body>
+</html>
