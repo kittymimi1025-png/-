@@ -10,7 +10,6 @@ body{
 
 /* =========================
    aside（可收合側邊選單）
-   - PDF 只要求「可收合」與「選單展開」:contentReference[oaicite:1]{index=1}
 ========================= */
 .aside-toggle{display:none;}
 
@@ -57,7 +56,6 @@ body{
   text-decoration:none;
   font-size:.95rem;
 }
-
 .menu a i{margin-right:10px;}
 .menu a:hover{background:rgba(255,255,255,.08);}
 
@@ -82,14 +80,13 @@ body{
 
 /* =========================
    header / banner
-   - 底圖來源：images/ .jpg:contentReference[oaicite:2]{index=2}
 ========================= */
 .site-header{position:relative;}
 
 .banner{
   width:100%;
   height:260px;
-  background-image:url("images/banner.jpg"); /* ✅ 請把 banner.jpg 放在 images/ 裡 */
+  background-image:url("images/banner.jpg");
   background-size:cover;
   background-position:center;
 }
@@ -120,11 +117,8 @@ body{
 }
 .lang-switch a.active{font-weight:800;text-decoration:underline;}
 
-.music-player audio{
-  height:34px;
-}
+.music-player audio{height:34px;}
 
-/* banner 文字 */
 .banner-text h1{
   font-size:2rem;
   font-weight:900;
@@ -138,14 +132,8 @@ body{
 /* =========================
    main
 ========================= */
-.site-main{
-  padding:24px 16px 32px;
-}
+.site-main{padding:24px 16px 32px;}
 
-/* article 區塊：
-   H1：1.6rem、#C7C7E2
-   content：1.1rem、#000000
-   :contentReference[oaicite:3]{index=3} */
 .intro-article{
   max-width:1100px;
   margin:0 auto 22px;
@@ -164,19 +152,17 @@ body{
 
 /* =========================
    商品區（每列最多三個，超過換行）
-   :contentReference[oaicite:4]{index=4}
 ========================= */
 .products{
   max-width:1100px;
   margin:0 auto;
   display:flex;
-  flex-wrap:wrap;          /* ✅ 超過自動換行 */
-  gap:28px;                /* ✅ 行列間距 */
+  flex-wrap:wrap;
+  gap:28px;
 }
 
-/* 每張卡片 */
 .product-card{
-  flex:0 0 calc((100% - 56px) / 3); /* ✅ 三個一排：gap 28px * 2 = 56px */
+  flex:0 0 calc((100% - 56px) / 3);
   background:#fff;
   border-radius:16px;
   padding:18px;
@@ -185,7 +171,6 @@ body{
   flex-direction:column;
 }
 
-/* 產品名 H2：1.25rem、#BB5E00 :contentReference[oaicite:5]{index=5} */
 .product-card h2{
   font-size:1.25rem;
   color:#BB5E00;
@@ -194,25 +179,20 @@ body{
   font-weight:900;
 }
 
-/* 圖片（統一大小） */
-.product-image{
-  margin-bottom:10px;
-}
+.product-image{margin-bottom:10px;}
 .product-image img{
   width:100%;
-  height:190px;          /* 統一高度（不受原檔影響） */
+  height:190px;
   object-fit:cover;
   border-radius:12px;
   display:block;
 }
 
-/* 圖片和價格之間有虛線 :contentReference[oaicite:6]{index=6} */
 .product-image{
   padding-bottom:12px;
   border-bottom:2px dashed #cfcfcf;
 }
 
-/* 價格：1.25rem、#000000 :contentReference[oaicite:7]{index=7} */
 .price{
   font-size:1.25rem;
   color:#000000;
@@ -221,7 +201,6 @@ body{
   margin-top:12px;
 }
 
-/* 若你有「選購/加入購物車」按鈕（不影響 PDF 規格） */
 .buy-link,
 .add-btn{
   margin-top:14px;
@@ -239,7 +218,6 @@ body{
 .buy-link:hover,
 .add-btn:hover{background:#ff6a00;}
 
-/* RWD：平板 2 個一排、手機 1 個一排（不違反「最多三個」） */
 @media (max-width:900px){
   .product-card{flex:0 0 calc((100% - 28px) / 2);}
 }
@@ -248,8 +226,7 @@ body{
 }
 
 /* =========================
-   footer（左網站地圖 / 中版權 / 右社群）
-   :contentReference[oaicite:8]{index=8}
+   footer
 ========================= */
 .site-footer{
   background:#222;
@@ -293,8 +270,7 @@ body{
 .social-link:hover{background:#666;}
 
 /* =========================
-   （可選）右上角購物車 icon（若你有用 cart.js）
-   不影響 PDF 規格
+   右上角購物車 icon
 ========================= */
 .cart-fab{
   position:fixed;
@@ -331,23 +307,51 @@ body{
   border:2px solid #fff;
 }
 
+/* =================================================
+   聯絡我們 icon（只影響 contact-fab）
+================================================= */
+.contact-fab{
+  position:fixed !important;
+  top:14px !important;
+  right:72px !important;
+  left:auto !important;
+
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ff8800;
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+  z-index:10000;
+  box-shadow:0 4px 10px rgba(0,0,0,.22);
+}
+.contact-fab:hover{
+  background:#ff6a00;
+  transform:translateY(-2px);
+}
+
 /* ===== 通用頁面容器（contact / order） ===== */
 .page-wrap{
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 16px;
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px;
 }
 
 .page-title{
-  font-size: 1.8rem;
-  margin: 8px 0 16px;
-  font-weight: 900;
+  font-size:1.8rem;
+  margin:8px 0 16px;
+  font-weight:900;
 }
 
 .section-title{
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  font-weight: 900;
+  font-size:1.2rem;
+  margin-bottom:10px;
+  font-weight:900;
   display:flex;
   align-items:center;
   gap:8px;
@@ -362,17 +366,17 @@ body{
 
 .form-label{
   display:block;
-  margin: 10px 0 6px;
-  font-weight: 800;
+  margin:10px 0 6px;
+  font-weight:800;
 }
 
 .form-input{
   width:100%;
-  padding: 12px 12px;
+  padding:12px 12px;
   border:1px solid #ddd;
   border-radius:12px;
   outline:none;
-  font-size: 1rem;
+  font-size:1rem;
 }
 
 .form-input:focus{
@@ -383,13 +387,13 @@ body{
 .form-actions{
   display:flex;
   gap:10px;
-  margin-top: 14px;
+  margin-top:14px;
   flex-wrap:wrap;
 }
 
 .btn{
   display:inline-block;
-  padding: 12px 14px;
+  padding:12px 14px;
   border-radius:12px;
   font-weight:900;
   text-decoration:none;
@@ -413,7 +417,7 @@ body{
 .btn.ghost:hover{background:#fafafa;}
 
 .form-hint{
-  margin-top: 10px;
+  margin-top:10px;
   color:#555;
 }
 
@@ -426,7 +430,7 @@ body{
 
 .checkout-item{
   display:grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns:1fr auto auto;
   gap:10px;
   align-items:center;
   border:1px solid #eee;
@@ -442,38 +446,8 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top: 12px;
+  margin-top:12px;
   font-size:1.1rem;
-  padding-top: 10px;
+  padding-top:10px;
   border-top:1px dashed #ddd;
-}
-
-/* =================================================
-   聯絡我們 icon（最終修正版）
-   只影響 contact-fab，不影響購物車
-================================================= */
-.contact-fab{
-  position: fixed !important;
-  top: 14px !important;
-  right: 72px !important;
-  left: auto !important;
-
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #ff8800;
-  color: #ffffff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-decoration: none;
-  z-index: 9999;
-  box-shadow: 0 4px 10px rgba(0,0,0,.22);
-}
-
-.contact-fab:hover{
-  background: #ff6a00;
-  transform: translateY(-2px);
 }
