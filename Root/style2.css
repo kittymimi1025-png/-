@@ -1,12 +1,7 @@
 /* =========================
    Reset
 ========================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:"Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
   background:#f5f5f5;
@@ -14,25 +9,21 @@ body{
 }
 
 /* =========================
-   Aside 側邊選單
+   側邊選單
 ========================= */
 .aside-toggle{display:none;}
 
 .sidebar{
   position:fixed;
-  top:0; left:0; bottom:0;
+  top:0;left:0;bottom:0;
   width:260px;
   background:#222;
   color:#fff;
   transform:translateX(-100%);
-  transition:transform .3s ease;
+  transition:.3s;
   z-index:5000;
-  overflow-y:auto;
 }
-
-.aside-toggle:checked ~ .sidebar{
-  transform:translateX(0);
-}
+.aside-toggle:checked ~ .sidebar{transform:translateX(0);}
 
 .sidebar-header{
   display:flex;
@@ -41,35 +32,21 @@ body{
   padding:16px;
   border-bottom:1px solid rgba(255,255,255,.15);
 }
-
-.sidebar-header h2{
-  font-size:1.1rem;
-  font-weight:900;
-}
-
-.aside-close{
-  cursor:pointer;
-  font-size:1.2rem;
-}
+.sidebar-header h2{font-size:1.2rem;font-weight:900;}
 
 .menu ul{list-style:none;}
-.menu li{border-bottom:1px solid rgba(255,255,255,.08);}
-
+.menu li{border-bottom:1px solid rgba(255,255,255,.1);}
 .menu a{
   display:block;
   padding:12px 16px;
   color:#fff;
   text-decoration:none;
 }
-
-.menu a:hover{
-  background:rgba(255,255,255,.1);
-}
+.menu a:hover{background:rgba(255,255,255,.1);}
 
 .aside-open{
   position:fixed;
-  top:12px;
-  left:12px;
+  top:12px;left:12px;
   z-index:6000;
   background:rgba(0,0,0,.6);
   color:#fff;
@@ -78,12 +55,10 @@ body{
   cursor:pointer;
 }
 
-@media (min-width:900px){
+@media(min-width:900px){
   .sidebar{transform:translateX(0);}
-  .aside-open,.aside-close{display:none;}
-  .site-header,.site-main,.site-footer{
-    margin-left:260px;
-  }
+  .aside-open{display:none;}
+  .site-header,.site-main,.site-footer{margin-left:260px;}
 }
 
 /* =========================
@@ -93,78 +68,76 @@ body{
 
 .banner{
   height:260px;
-  background-size:cover;
-  background-position:center;
+  background:#ccc;
 }
-
 .banner-overlay{
   height:100%;
+  padding:16px;
   background:linear-gradient(135deg,#74ebd5,#ACB6E5);
   color:#fff;
-  padding:16px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
-.banner-topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-}
+.banner-text h1{font-size:2rem;font-weight:900;}
+.banner-text p{opacity:.95;}
 
-.lang-switch a{
+/* =========================
+   右上角 icon
+========================= */
+.cart-fab,
+.contact-fab{
+  position:fixed;
+  top:14px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ff8800;
   color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-decoration:none;
-  margin-right:6px;
+  z-index:9999;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
 }
+.cart-fab{right:16px;}
+.contact-fab{right:72px;}
 
-.lang-switch a.active{
-  font-weight:900;
-  text-decoration:underline;
-}
-
-.music-player audio{
-  height:34px;
-}
-
-.banner-text h1{
-  font-size:2rem;
-  font-weight:900;
-}
-
-.banner-text p{
-  margin-top:6px;
+.cart-badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:#e60012;
+  color:#fff;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:999px;
+  border:2px solid #fff;
 }
 
 /* =========================
    Main
 ========================= */
-.site-main{
-  padding:24px 16px 32px;
-}
+.site-main{padding:24px 16px;}
 
-/* =========================
-   Intro
-========================= */
 .intro-article{
   max-width:1100px;
   margin:0 auto 24px;
 }
-
 .intro-article h1{
   font-size:1.6rem;
   color:#C7C7E2;
   margin-bottom:10px;
 }
-
 .intro-article .content{
   font-size:1.1rem;
   line-height:1.8;
 }
 
 /* =========================
-   Products
+   商品卡片
 ========================= */
 .products{
   max-width:1100px;
@@ -175,11 +148,11 @@ body{
 }
 
 .product-card{
-  flex:0 0 calc((100% - 56px) / 3);
   background:#fff;
   border-radius:16px;
   padding:18px;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
+  flex:0 0 calc((100% - 56px)/3);
   display:flex;
   flex-direction:column;
 }
@@ -188,12 +161,8 @@ body{
   text-align:center;
   color:#BB5E00;
   font-size:1.25rem;
-  margin-bottom:12px;
-}
-
-.product-image{
-  padding-bottom:12px;
-  border-bottom:2px dashed #ccc;
+  font-weight:900;
+  margin-bottom:10px;
 }
 
 .product-image img{
@@ -202,34 +171,36 @@ body{
   object-fit:cover;
   border-radius:12px;
 }
+.product-image{
+  padding-bottom:12px;
+  border-bottom:2px dashed #ccc;
+}
 
 .price{
   text-align:center;
   font-size:1.25rem;
   font-weight:900;
-  margin-top:12px;
+  margin:12px 0;
 }
 
-.add-btn{
-  margin-top:14px;
+/* 🔥 核心：選購按鈕（強制樣式） */
+.product-card .buy-link{
+  margin-top:auto;
   background:#ff8800;
-  color:#fff;
-  border:none;
-  border-radius:12px;
+  color:#fff !important;
+  text-align:center;
   padding:12px;
+  border-radius:12px;
   font-weight:900;
-  cursor:pointer;
+  text-decoration:none !important;
+  display:block;
 }
+.product-card .buy-link:hover{background:#ff6a00;}
 
-.add-btn:hover{
-  background:#ff6a00;
-}
-
-@media (max-width:900px){
+@media(max-width:900px){
   .product-card{flex:0 0 calc((100% - 28px)/2);}
 }
-
-@media (max-width:600px){
+@media(max-width:600px){
   .product-card{flex:0 0 100%;}
 }
 
@@ -239,9 +210,8 @@ body{
 .site-footer{
   background:#222;
   color:#fff;
-  padding:14px 16px;
+  padding:16px;
 }
-
 .footer-inner{
   max-width:1100px;
   margin:0 auto;
@@ -249,86 +219,17 @@ body{
   justify-content:space-between;
   flex-wrap:wrap;
 }
-
-/* =========================
-   Buttons
-========================= */
-.btn{
-  padding:12px 14px;
-  border-radius:12px;
-  font-weight:900;
-  font-size:1rem;
-  cursor:pointer;
+.footer-link,
+.social-link{
+  color:#fff;
   text-decoration:none;
-  display:inline-block;
-  border:1px solid transparent;
 }
-
-.btn.primary{
-  background:#ff8800;
-  color:#fff;
-}
-
-.btn.primary:hover{
-  background:#ff6a00;
-}
-
-.btn.ghost{
-  background:#fff;
-  color:#333;
-  border:1px solid #ddd;
-  font-size:1rem !important; /* 強制修正 ghost 字體 */
-}
-
-.btn.ghost:hover{
-  background:#fafafa;
-}
-
-/* =========================
-   Cart & Contact Icons
-========================= */
-.cart-fab{
-  position:fixed;
-  top:14px;
-  right:16px;
-  width:46px;
-  height:46px;
+.social-link{
+  width:34px;height:34px;
   border-radius:50%;
-  background:#ff8800;
-  color:#fff;
-  display:flex;
+  background:#444;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  z-index:9999;
 }
-
-.contact-fab{
-  position:fixed !important;
-  top:14px !important;
-  right:72px !important;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:#ffd1a3;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-
-/* 保險：確保選購按鈕不會變回藍色連結 */
-.product-card a.buy-link{
-  margin-top:14px;
-  text-align:center;
-  text-decoration:none;
-  border:none;
-  background:#ff8800;
-  color:#fff !important;
-  padding:12px 14px;
-  border-radius:12px;
-  font-weight:900;
-  cursor:pointer;
-  display:block;
-}
-.product-card a.buy-link:hover{background:#ff6a00;}
+.social-link:hover{background:#666;}
